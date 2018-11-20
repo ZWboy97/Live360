@@ -5,4 +5,15 @@
 
     <dimen name="player_panel_start_btn">50dp</dimen>
     <dimen name="popup_gap">8dp</dimen>
+
+    <!--ui const-->
+    <dimen name="navigation_bar">45dp</dimen>
+    <dimen name="divider_height">1px</dimen>
+
+    <!--dimen used often-->
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+
 </resources>

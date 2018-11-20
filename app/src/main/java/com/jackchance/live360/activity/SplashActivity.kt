@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Message
 import android.widget.TextView
 import com.jackchance.live360.R
+import com.jackchance.live360.util.toHomeActivityt
 import com.jackchance.live360.util.toMainActivity
 import com.jackchance.live360.util.viewById
 
@@ -32,7 +33,7 @@ class SplashActivity : BaseActivity() {
 
             when (msg?.what) {
                 MSG_TO_MAINACTIVITY -> {
-                    toMainActivity()
+                    toHomeActivityt()
                     finish()
                 }
             }

@@ -44,8 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity">
-        </activity>
+        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.NetMediaActivty" />
         <activity
             android:name=".activity.VideoPlayerActivity"
@@ -62,7 +61,7 @@
             android:name=".activity.TestVideoActivity"
             android:configChanges="screenSize|orientation"
             android:screenOrientation="landscape" />
-
+        <activity android:name=".activity.HomeActivity"></activity>
     </application>
 
 </manifest>

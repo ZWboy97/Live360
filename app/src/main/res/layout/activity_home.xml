@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.HomeActivity">
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/live_list_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/live_history_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/my_misc_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/div_001"
+        app:layout_constraintTop_toBottomOf="@+id/container"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_container"/>
+
+    <LinearLayout
+        android:id="@+id/bottom_container"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/live_list_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="list"/>
+
+        <Button
+            android:id="@+id/live_history_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hist"/>
+
+        <Button
+            android:id="@+id/my_misc_buttom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Misc"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

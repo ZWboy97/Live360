@@ -43,4 +43,10 @@
     <color name="viewfinder_laser">#ffff0000</color>
     <color name="viewfinder_mask">#60000000</color>
     <color name="header">#58567D</color>
+
+    <color name="div_001">#e7e7e7</color>
+    <color name="div_002">#aeaeae</color>
+    <!--从这里开始加-->
+    <color name="div_004">#e7e7e7</color>
+
 </resources>

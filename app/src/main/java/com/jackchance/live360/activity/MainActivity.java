@@ -1,7 +1,7 @@
 package com.jackchance.live360.activity;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setDefaultFragment() {
 
-        FragmentManager fm = this.getFragmentManager();
+        FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
         localFragment = new LocalFragment();
         transaction.replace(R.id.contentFrame,localFragment);

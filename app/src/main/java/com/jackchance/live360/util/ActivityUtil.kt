@@ -2,6 +2,7 @@ package com.jackchance.live360.util
 
 import android.app.Activity
 import android.content.Intent
+import com.jackchance.live360.activity.HomeActivity
 import com.jackchance.live360.activity.MainActivity
 
 /**
@@ -10,5 +11,10 @@ import com.jackchance.live360.activity.MainActivity
 
 fun Activity.toMainActivity() {
     val intent = Intent(this, MainActivity::class.java)
+    this.startActivity(intent)
+}
+
+fun Activity.toHomeActivityt() {
+    val intent = Intent(this,HomeActivity::class.java)
     this.startActivity(intent)
 }

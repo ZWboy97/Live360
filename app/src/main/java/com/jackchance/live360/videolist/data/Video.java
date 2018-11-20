@@ -1,4 +1,6 @@
-package com.jackchance.live360.util;
+package com.jackchance.live360.videolist.data;
+
+import com.jackchance.live360.util.LoadedImage;
 
 import java.io.Serializable;
 
