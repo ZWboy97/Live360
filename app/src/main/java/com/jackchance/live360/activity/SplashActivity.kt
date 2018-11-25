@@ -3,6 +3,7 @@ package com.jackchance.live360.activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
+import android.view.WindowManager
 import android.widget.TextView
 import com.jackchance.live360.R
 import com.jackchance.live360.util.toHomeActivityt
@@ -22,6 +23,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         handler.sendEmptyMessageDelayed(MSG_TO_MAINACTIVITY, WAIT_DELAY)
 

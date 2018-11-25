@@ -1,5 +1,6 @@
 package com.jackchance.live360.activity;
 
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.Context;
@@ -12,10 +13,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.jackchance.live360.R;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private LocalFragment localFragment;
+import com.jackchance.live360.R;
+import com.jackchance.live360.util.ActivityUtilKt;
+import com.jackchance.live360.videolist.data.LiveData;
+import com.jackchance.live360.videolist.fragement.VideoListFragment;
+
+import org.jetbrains.annotations.Nullable;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, VideoListFragment.OnListFragmentInteractionListener {
+    private Fragment localFragment;
     private Button media_net;
     private Button media_setting;
     private Button media_history;
@@ -25,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player);
 
-        setActionBarLayout(R.layout.media_actionbar,this);
+        setActionBarLayout(R.layout.media_actionbar, this);
 
         setDefaultFragment();
 
@@ -44,43 +51,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ActionBar.LayoutParams layout = new ActionBar.LayoutParams(
                     ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
             actionBar.setCustomView(v, layout);
-            media_net = (Button)findViewById(R.id.media_network);
-            media_history = (Button)findViewById(R.id.media_history);
-            media_setting = (Button)findViewById(R.id.media_setting);
+            media_net = (Button) findViewById(R.id.media_network);
+            media_history = (Button) findViewById(R.id.media_history);
+            media_setting = (Button) findViewById(R.id.media_setting);
             media_net.setOnClickListener(this);
             media_setting.setOnClickListener(this);
             media_history.setOnClickListener(this);
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, "ActionBar不存在", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     private void setDefaultFragment() {
-
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        localFragment = new LocalFragment();
-        transaction.replace(R.id.contentFrame,localFragment);
+        VideoListFragment videoListFragment = VideoListFragment.Companion.newInstance(1);
+        //localFragment = new LocalFragment();
+        transaction.replace(R.id.contentFrame, videoListFragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onListFragmentInteraction(@Nullable LiveData item) {
+        if(item.getRtmpUrl().isEmpty()){
+            return;
+        }
+        ActivityUtilKt.toLiveActivity(this, item.getRtmpUrl(), false);
     }
 
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch(view.getId()){
+        switch (view.getId()) {
             case R.id.media_network:
                 Toast.makeText(MainActivity.this, "media_net", Toast.LENGTH_SHORT).show();
-                intent = new Intent(MainActivity.this,NetMediaActivty.class);
+                intent = new Intent(MainActivity.this, NetMediaActivty.class);
                 startActivity(intent);
                 break;
             case R.id.media_history:
-                Intent intent2 = new Intent(this,HistoryActivity.class);
+                Intent intent2 = new Intent(this, HistoryActivity.class);
                 startActivity(intent2);
                 Toast.makeText(MainActivity.this, "media_history", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.media_setting:
-                intent = new Intent(this,SettingActivity.class);
+                intent = new Intent(this, SettingActivity.class);
                 startActivity(intent);
                 Toast.makeText(MainActivity.this, "media_setting", Toast.LENGTH_SHORT).show();
                 break;

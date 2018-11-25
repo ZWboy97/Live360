@@ -6,9 +6,13 @@ import android.content.Context
 import android.support.annotation.IdRes
 import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import com.jackchance.live360.R
+import com.squareup.picasso.Picasso
 
 
 /**
@@ -75,3 +79,46 @@ fun <T : View> View.viewById(@IdRes id: Int): Lazy<T> {
 }
 
 fun <T : View> ViewHolder.viewById(@IdRes id: Int): Lazy<T> = view.viewById(id)
+
+/**
+ * Picasso 图片加载扩展
+ */
+fun ImageView.loadUrl(url: String) {
+    Picasso.get()
+            .load(url)
+            .placeholder(R.drawable.live360_background)
+            .error(R.drawable.abc_cab_background_internal_bg)
+            .into(this)
+
+}
+
+/**
+ * 时间格式化工具
+ */
+//fun Long.toPrettyString(){
+//    val DATETIME_FORMATTER = SimpleDateFormat("yyyy-MM-dd HH:mm")
+//    val current = System.currentTimeMillis()
+//    val diff = current - this
+//    return if (diff < 0L) {
+//        DATETIME_FORMATTER.format(Date(this))
+//    } else if (diff < 60000L) {
+//        diff / 1000L + "秒前"
+//    } else if (diff < 3600000L) {
+//        diff / 60000L + "分钟前"
+//    } else if (isToday) {
+//        "今天 " + TIME_FORMATTER.format(Date(time))
+//    } else {
+//        if (isYesterday(time)) "昨天 " + TIME_FORMATTER.format(Date(time)) else DATETIME_FORMATTER.format(Date(time))
+//    }
+//
+//}
+//
+//fun Long.isFuture(): Boolean{
+//    val current = System.currentTimeMillis()
+//    return current - this < 0L
+//}
+//
+//fun Long.isToday(): Boolean{
+//    val diff = this - startOfToday()
+//    return diff >= 0L && diff < 86400000L
+//}

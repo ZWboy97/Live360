@@ -48,5 +48,8 @@
     <color name="div_002">#aeaeae</color>
     <!--从这里开始加-->
     <color name="div_004">#e7e7e7</color>
+    <color name="image_bottom_bg">#64434543</color>
+    <color name="text_color_title">#000000</color>
+    <color name="text_color1">#1d1c1c</color>
 
 </resources>
