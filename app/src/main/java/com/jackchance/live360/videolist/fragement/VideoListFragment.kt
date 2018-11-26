@@ -8,10 +8,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.aspsine.irecyclerview.IRecyclerView
 import com.jackchance.live360.R
-import com.jackchance.live360.util.viewById
 import com.jackchance.live360.videolist.data.LiveData
 import com.jackchance.live360.videolist.data.VideoListBuilder
 import com.jackchance.live360.videolist.ui.MyVideoRecyclerViewAdapter
