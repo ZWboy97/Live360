@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.WindowManager
-import android.widget.TextView
+import com.jackchance.live360.Api.DataApi
 import com.jackchance.live360.R
 import com.jackchance.live360.util.toHomeActivityt
-import com.jackchance.live360.util.toMainActivity
-import com.jackchance.live360.util.viewById
+import retrofit2.Call
+import com.jackchance.live360.model.Translation
+import retrofit2.Callback
+import retrofit2.Response
+
 
 /**
  * Created by lijiachang on 2018/11/20
@@ -16,14 +19,22 @@ import com.jackchance.live360.util.viewById
 
 class SplashActivity : BaseActivity() {
 
-    private val appNameText: TextView by viewById(R.id.app_name)
-
     private val handler = Handler(HandlerCallBack())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+
+        DataApi.getDataCall().enqueue(object : Callback<Translation> {
+            override fun onFailure(call: Call<Translation>, t: Throwable) {
+                System.out.println("连接失败")
+            }
+
+            override fun onResponse(call: Call<Translation>, response: Response<Translation>) {
+                response.body()?.show()
+            }
+        })
 
         handler.sendEmptyMessageDelayed(MSG_TO_MAINACTIVITY, WAIT_DELAY)
 
