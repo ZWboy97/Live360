@@ -6,26 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".activity.HomeActivity">
 
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@color/bg_white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:src="@drawable/logo_live_360"
+            android:scaleType="fitXY" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/div_001"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/divider"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/top_divider">
 
         <FrameLayout
-            android:id="@+id/live_list_container"
+            android:id="@+id/live_list_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <FrameLayout
-            android:id="@+id/live_history_container"
+            android:id="@+id/live_history_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <FrameLayout
-            android:id="@+id/my_misc_container"
+            android:id="@+id/my_misc_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -42,30 +65,74 @@
     <LinearLayout
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/live_list_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="list"/>
+            android:gravity="center"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:id="@+id/home_live_list_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_home_video_list_bg"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/live_history_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Hist"/>
+            android:gravity="center"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:id="@+id/home_kind_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_home_kind_bg"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/my_misc_buttom"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Misc"/>
+            android:gravity="center"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:id="@+id/home_publish_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_home_publish_bg"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:id="@+id/home_setting_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_home_setting_bg"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <CheckedTextView
+                android:id="@+id/home_misc_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/selector_home_misc_bg"/>
+        </LinearLayout>
 
     </LinearLayout>
 

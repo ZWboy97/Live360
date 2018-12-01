@@ -15,5 +15,25 @@
     <dimen name="margin_15">15dp</dimen>
     <dimen name="margin_20">20dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="margin_30">30dip</dimen>
+    <dimen name="margin_5">5dip</dimen>
+    <dimen name="text_10">10dip</dimen>
+    <dimen name="text_11">11dip</dimen>
+    <dimen name="text_12">12dip</dimen>
+    <dimen name="text_13">13dip</dimen>
+    <dimen name="text_14">14dip</dimen>
+    <dimen name="text_15">15dip</dimen>
+    <dimen name="text_16">16dip</dimen>
+    <dimen name="text_17">17dip</dimen>
+    <dimen name="text_18">18dip</dimen>
+    <dimen name="text_19">19dip</dimen>
+    <dimen name="text_20">20dip</dimen>
+    <dimen name="text_21">21dip</dimen>
+    <dimen name="text_22">22dip</dimen>
+    <dimen name="text_23">23dip</dimen>
+    <dimen name="text_24">24dip</dimen>
+    <dimen name="text_7">7dip</dimen>
+    <dimen name="text_8">8dip</dimen>
+    <dimen name="text_9">9dip</dimen>
 
 </resources>

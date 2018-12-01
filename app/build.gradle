@@ -50,6 +50,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.github.Aspsine:IRecyclerView:0.0.5'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.2'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.2'
 
     implementation 'io.reactivex:rxjava:1.2.0'
     implementation 'io.reactivex:rxandroid:1.1.0'
