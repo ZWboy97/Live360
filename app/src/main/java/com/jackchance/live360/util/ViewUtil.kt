@@ -58,9 +58,9 @@ fun <T : View> Activity.viewById(@IdRes id: Int): Lazy<T> {
     return lazy(LazyThreadSafetyMode.NONE) { findViewById(id) as T }
 }
 
-fun <T : View> Fragment.viewById(@IdRes id: Int): Lazy<T?> {
+fun <T : View> Fragment.viewById(@IdRes id: Int): Lazy<T> {
     @Suppress("UNCHECKED_CAST")
-    return lazy(LazyThreadSafetyMode.NONE) { view?.findViewById(id) as T? }
+    return lazy(LazyThreadSafetyMode.NONE) { view?.findViewById(id) as T }
 }
 
 fun <T : View> DialogFragment.viewById(@IdRes id: Int): Lazy<T> {

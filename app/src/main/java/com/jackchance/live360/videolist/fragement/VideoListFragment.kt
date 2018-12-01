@@ -13,6 +13,7 @@ import com.jackchance.live360.R
 import com.jackchance.live360.videolist.data.LiveData
 import com.jackchance.live360.videolist.data.VideoListBuilder
 import com.jackchance.live360.videolist.ui.MyVideoRecyclerViewAdapter
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
 /**
  * Created by lijiachang on 2018/11/20
@@ -23,6 +24,12 @@ class VideoListFragment : Fragment() {
     private var columnCount = 1
 
     private var listener: OnListFragmentInteractionListener? = null
+
+    private lateinit var iRecyclerView: IRecyclerView
+    private lateinit var refreshLayout: SmartRefreshLayout
+
+    private var liveDataList: MutableList<LiveData> = ArrayList()
+    private lateinit var myAdapter: MyVideoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,25 +43,41 @@ class VideoListFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_video_list, container, false)
 
-        val iRecyclerView: IRecyclerView = view.findViewById(R.id.list)
-        iRecyclerView.setRefreshEnabled(true)
-        iRecyclerView.setRecyclerListener {
-            VideoListBuilder.getVideoList{
-                iRecyclerView.setRefreshing(false)
-            }
+        iRecyclerView = view.findViewById(R.id.list)
+        refreshLayout = view.findViewById(R.id.refresh_layout)
+        refreshLayout.setOnRefreshListener {
+            liveDataList.clear()
+            loadLiveData(0)
+        }
+        refreshLayout.setOnLoadmoreListener {
+            loadLiveData(0)
         }
 
         // Set the adapter
-        if (view is IRecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = MyVideoRecyclerViewAdapter(VideoListBuilder.getVideoList().toList(), listener)
+        with(iRecyclerView) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
             }
+            myAdapter = MyVideoRecyclerViewAdapter(liveDataList,listener)
+            adapter = myAdapter
         }
         return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        loadLiveData(0)
+    }
+
+    private fun loadLiveData(index: Int){
+        val appendItem: MutableList<LiveData>?
+        appendItem = VideoListBuilder.getVideoList{
+            refreshLayout.finishRefresh()
+            refreshLayout.finishLoadmore()
+        }
+        liveDataList.addAll(appendItem)
+        myAdapter.notifyDataSetChanged()
     }
 
     override fun onAttach(context: Context) {
