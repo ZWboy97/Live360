@@ -1,26 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<com.scwang.smartrefresh.layout.SmartRefreshLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refresh_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
-    <com.scwang.smartrefresh.header.StoreHouseHeader
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:background="@color/bg_white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:src="@drawable/logo_live_360"
+            android:scaleType="fitXY" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/top_divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:background="@color/div_001"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:shhText="Live 360"/>
+        app:layout_constraintTop_toBottomOf="@+id/top_divider">
 
-    <com.aspsine.irecyclerview.IRecyclerView
-        android:id="@+id/list"
-        android:name="com.jackchance.live360.fragement.VideoListFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:loadMoreEnabled="true"
-        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:context=".videolist.fragement.VideoListFragment"
-        tools:listitem="@layout/fragment_video_item" />
+        <com.scwang.smartrefresh.header.StoreHouseHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:shhText="Live 360"/>
 
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <com.aspsine.irecyclerview.IRecyclerView
+            android:id="@+id/list"
+            android:name="com.jackchance.live360.fragement.VideoListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loadMoreEnabled="true"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            tools:context=".videolist.fragement.HomeLiveListFragment"
+            tools:listitem="@layout/fragment_video_item" />
+
+        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</android.support.constraint.ConstraintLayout>

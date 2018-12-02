@@ -6,20 +6,17 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import android.view.View
-import android.view.WindowManager
-import android.widget.Button
 import android.widget.CheckedTextView
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import com.jackchance.live360.R
 import com.jackchance.live360.util.toLiveActivity
-import com.jackchance.live360.util.toMainActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
 import com.jackchance.live360.videolist.data.LiveData
-import com.jackchance.live360.videolist.fragement.VideoListFragment
+import com.jackchance.live360.videolist.fragement.HomeLiveListFragment
+import com.jackchance.live360.vod.VodListFragment
 
-class HomeActivity : BaseActivity(), View.OnClickListener, VideoListFragment.OnListFragmentInteractionListener {
+class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
 
     private val homeLiveListButton: CheckedTextView by viewById(R.id.home_live_list_button)
     private val homeKindListButton: CheckedTextView by viewById(R.id.home_kind_button)
@@ -27,11 +24,12 @@ class HomeActivity : BaseActivity(), View.OnClickListener, VideoListFragment.OnL
     private val homeSettingButton: CheckedTextView by viewById(R.id.home_setting_button)
     private val homeMiscButton: CheckedTextView by viewById(R.id.home_misc_button)
     private val homeLiveFragment: FrameLayout by viewById(R.id.live_list_fragment)
-    private val homeKindFragment: FrameLayout by viewById(R.id.live_history_fragment)
+    private val homeKindFragment: FrameLayout by viewById(R.id.vod_list_fragment)
     private val homeSettingFragment: FrameLayout by viewById(R.id.my_misc_fragment)
 
     private var currentSelected: Int = -1
-    private val liveListFragment = VideoListFragment.newInstance(1)
+    private val liveListFragment = HomeLiveListFragment.newInstance(1)
+    private val vodListFrameLayout = VodListFragment.newInstance("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,25 +62,24 @@ class HomeActivity : BaseActivity(), View.OnClickListener, VideoListFragment.OnL
             }
             HOME_KIND -> {
                 homeKindListButton.isChecked = true
-                fragment = LocalFragment()
-                transaction.replace(R.id.live_history_fragment, fragment)
+                transaction.replace(R.id.vod_list_fragment, vodListFrameLayout)
                 transaction.commit()
             }
             HOME_PUBLISH -> {
                 homePublishButton.isChecked = true
-                fragment = VideoListFragment.newInstance(1)
+                fragment = HomeLiveListFragment.newInstance(1)
                 transaction.replace(R.id.my_misc_fragment, fragment)
                 transaction.commit()
             }
             HOME_SETTING -> {
                 homeSettingButton.isChecked = true
-                fragment = VideoListFragment.newInstance(1)
+                fragment = HomeLiveListFragment.newInstance(1)
                 transaction.replace(R.id.my_misc_fragment, fragment)
                 transaction.commit()
             }
             else -> {
                 homeLiveListButton.isChecked = true
-                fragment = VideoListFragment.newInstance(1)
+                fragment = HomeLiveListFragment.newInstance(1)
                 transaction.replace(R.id.live_list_fragment, fragment)
                 transaction.commit()
             }
@@ -148,7 +145,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, VideoListFragment.OnL
         if (item.rtmpUrl.isEmpty()) {
             return
         }
-        this.toLiveActivity(item.rtmpUrl, false)
+        this.toLiveActivity(item.rtmpUrl, item.isVr)
     }
 
     companion object {

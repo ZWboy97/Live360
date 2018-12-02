@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/video_bg_item"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vod_video_bg_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/background"
+            app:layout_constraintDimensionRatio="16:9" />
+
+
+
+        <TextView
+            android:id="@+id/text_vod_video_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="全景直播"
+            android:padding="3dp"
+            android:background="@color/image_bottom_bg"
+            android:textColor="@color/div_001"
+            android:textSize="15dp"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/vod_video_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="test，test"
+        android:maxLines="2"
+        android:minLines="2"
+        android:textColor="@color/text_color1"
+        android:textSize="13dp" />
+
+    <TextView
+        android:id="@+id/vod_video_kind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="户外"
+        android:textSize="10dp" />
+
+</LinearLayout>
+

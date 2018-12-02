@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/video_bg_item">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,8 +15,6 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
             android:src="@drawable/background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +51,6 @@
             android:text="test，test"
             android:textSize="14dp"
             android:textColor="@color/text_color1"
-            android:layout_marginLeft="@dimen/margin_10"
             app:layout_constraintTop_toBottomOf="@id/avtar_image"
             app:layout_constraintBottom_toTopOf="@+id/live_bg_image"/>
 
@@ -61,8 +59,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:scaleType="fitXY"
-            android:layout_marginLeft="@dimen/margin_10"
-            android:layout_marginRight="@dimen/margin_10"
             android:src="@drawable/background"
             android:layout_marginTop="5dp"
             app:layout_constraintDimensionRatio="16:9"
@@ -72,8 +68,6 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/image_bottom_bg"
-            android:layout_marginRight="@dimen/margin_10"
-            android:layout_marginLeft="@dimen/margin_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@+id/text_live_name" />
 
@@ -82,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_15"
-            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginLeft="5dp"
             android:text="全景直播"
             android:textColor="@color/div_001"
             android:textSize="23dp"
@@ -94,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="@dimen/margin_15"
+            android:layout_marginLeft="5dp"
             android:text="欢迎收看"
             android:textColor="@color/div_001"
             android:textSize="10dp"
@@ -102,12 +96,5 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
-
-    <View
-        android:id="@+id/bottom_divider"
-        android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/div_004" />
 
 </LinearLayout>

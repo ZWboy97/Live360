@@ -34,7 +34,8 @@ import com.jackchance.live360.model.Strings;
 import java.io.IOException;
 
 public class TestVideoActivity extends Activity {
-    private static final String TAG = "TestVideoActivity";
+
+    private static final String TAG = "LiveVideoActivity";
 
     public static final int UPDATE_SEEKBAR = 1;
 
