@@ -17,11 +17,11 @@ import android.widget.Toast;
 import com.jackchance.live360.R;
 import com.jackchance.live360.util.ActivityUtilKt;
 import com.jackchance.live360.videolist.data.LiveData;
-import com.jackchance.live360.videolist.fragement.VideoListFragment;
+import com.jackchance.live360.videolist.fragement.HomeLiveListFragment;
 
 import org.jetbrains.annotations.Nullable;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, VideoListFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
     private Fragment localFragment;
     private Button media_net;
     private Button media_setting;
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void setDefaultFragment() {
         FragmentManager fm = this.getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
-        VideoListFragment videoListFragment = VideoListFragment.Companion.newInstance(1);
+        HomeLiveListFragment videoListFragment = HomeLiveListFragment.Companion.newInstance(1);
         //localFragment = new LocalFragment();
         transaction.replace(R.id.contentFrame, videoListFragment);
         transaction.commit();

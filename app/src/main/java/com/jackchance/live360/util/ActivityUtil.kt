@@ -2,6 +2,8 @@ package com.jackchance.live360.util
 
 import android.app.Activity
 import android.content.Intent
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import com.jackchance.live360.activity.HomeActivity
 import com.jackchance.live360.activity.MainActivity
 import com.jackchance.live360.activity.TestVideoActivity

@@ -13,5 +13,6 @@ data class LiveData(
         var startTime: Long = 0,
         var isFinish: Boolean = true,
         var publisher: Publisher? = null,
-        var publisherMessage: String = ""
+        var publisherMessage: String = "",
+        var isVr: Boolean = false
 )

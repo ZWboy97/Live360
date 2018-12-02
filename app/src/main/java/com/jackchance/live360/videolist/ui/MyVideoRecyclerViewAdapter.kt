@@ -10,7 +10,7 @@ import com.jackchance.live360.R
 import com.jackchance.live360.util.loadUrl
 import com.jackchance.live360.util.visible
 import com.jackchance.live360.videolist.data.LiveData
-import com.jackchance.live360.videolist.fragement.VideoListFragment.OnListFragmentInteractionListener
+import com.jackchance.live360.videolist.fragement.HomeLiveListFragment.OnListFragmentInteractionListener
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_video_item.view.*
 
