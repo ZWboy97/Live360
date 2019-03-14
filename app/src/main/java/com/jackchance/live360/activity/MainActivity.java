@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     public void setActionBarLayout(int layoutId, Context mContext) {
         ActionBar actionBar = getSupportActionBar();
         if (null != actionBar) {
@@ -60,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Toast.makeText(MainActivity.this, "ActionBar不存在", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     private void setDefaultFragment() {

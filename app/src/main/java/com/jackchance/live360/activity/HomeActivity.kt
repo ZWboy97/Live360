@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.CheckedTextView
 import android.widget.FrameLayout
 import com.jackchance.live360.R
+import com.jackchance.live360.fragment.LivePublishFragment
 import com.jackchance.live360.util.toLiveActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
@@ -67,8 +68,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
             }
             HOME_PUBLISH -> {
                 homePublishButton.isChecked = true
-                fragment = HomeLiveListFragment.newInstance(1)
-                transaction.replace(R.id.my_misc_fragment, fragment)
+                fragment = LivePublishFragment.newInstance("","")
+                transaction.replace(R.id.live_publish_fragment, fragment)
                 transaction.commit()
             }
             HOME_SETTING -> {

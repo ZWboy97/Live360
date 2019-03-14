@@ -167,7 +167,6 @@ public class TestVideoActivity extends Activity {
         choosedecode = settings.getString("choose_decode","undefind");
         chooseview = settings.getString("choose_view","undefind");
 
-
         // set content view
         mHandler = new Handler(){
             @Override
@@ -252,6 +251,8 @@ public class TestVideoActivity extends Activity {
                     }
                 })
                 .init(R.id.spinner_projection);
+        mVRLibrary.switchInteractiveMode(TestVideoActivity.this,
+                MDVRLibrary.INTERACTIVE_MODE_TOUCH); //初始模式采用VR模式
     }
 
     private void initMedia() {
