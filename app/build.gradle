@@ -64,4 +64,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // pandora
+    debugImplementation('com.github.whataa:pandora:1.2.2') {
+        exclude group: "com.squareup.okhttp3"
+    }
+    releaseImplementation('com.github.whataa:pandora-no-op:1.2.2') {
+        exclude group: "com.squareup.okhttp3"
+    }
+
+    // mmkv
+    implementation 'com.tencent:mmkv:1.0.16'
+
 }
