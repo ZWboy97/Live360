@@ -23,7 +23,7 @@ class JsonUtil {
             return gson.fromJson(json, object : TypeToken<List<T>>() {}.type)
         }
 
-        fun <T> toJson(objects: Objects): String {
+        fun toJson(objects: Any): String {
             return gson.toJson(objects)
         }
 
