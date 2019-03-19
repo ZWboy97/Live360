@@ -1,4 +1,4 @@
-package com.jackchance.live360.vod
+package com.jackchance.live360.vodlist
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.jackchance.live360.R
-import com.jackchance.live360.activity.LocalFragment
-import com.jackchance.live360.videolist.fragement.HomeLiveListFragment
-import com.jackchance.live360.vod.adapter.MyViewPagerAdapter
-import com.jackchance.live360.vod.fragement.VodVideoListFragment
+import com.jackchance.live360.vodlist.adapter.MyViewPagerAdapter
+import com.jackchance.live360.vodlist.fragement.VodVideoListFragment
 
 
 private const val ARG_PARAM1 = "param1"

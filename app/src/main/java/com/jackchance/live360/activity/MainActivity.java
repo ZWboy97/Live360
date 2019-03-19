@@ -16,12 +16,12 @@ import android.widget.Toast;
 
 import com.jackchance.live360.R;
 import com.jackchance.live360.util.ActivityUtilKt;
-import com.jackchance.live360.videolist.data.LiveData;
-import com.jackchance.live360.videolist.fragement.HomeLiveListFragment;
+import com.jackchance.live360.livelist.data.LiveData;
+import com.jackchance.live360.livelist.fragement.HomeLiveListFragment;
 
 import org.jetbrains.annotations.Nullable;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, HomeLiveListFragment.OnLiveListInteractionListener {
     private Fragment localFragment;
     private Button media_net;
     private Button media_setting;
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onListFragmentInteraction(@Nullable LiveData item) {
+    public void onLiveListItemClick(@Nullable LiveData item) {
         if(item.getRtmpUrl().isEmpty()){
             return;
         }

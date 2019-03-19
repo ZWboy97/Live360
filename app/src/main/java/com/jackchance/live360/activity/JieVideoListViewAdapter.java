@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jackchance.live360.model.MyVideoThumbLoader;
-import com.jackchance.live360.videolist.data.Video;
+import com.jackchance.live360.livelist.data.Video;
 import com.jackchance.live360.R;
 
 import java.util.ArrayList;

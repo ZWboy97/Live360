@@ -1,7 +1,6 @@
-package com.jackchance.live360.videolist.data
+package com.jackchance.live360.livelist.data
 
 import java.util.ArrayList
-import java.util.HashMap
 
 /**
  * Created by lijiachang on 2018/11/20

@@ -47,7 +47,7 @@
             android:layout_height="match_parent"
             app:loadMoreEnabled="true"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-            tools:context=".videolist.fragement.HomeLiveListFragment"
+            tools:context=".livelist.fragement.HomeLiveListFragment"
             tools:listitem="@layout/fragment_video_item" />
 
         <com.scwang.smartrefresh.layout.footer.ClassicsFooter

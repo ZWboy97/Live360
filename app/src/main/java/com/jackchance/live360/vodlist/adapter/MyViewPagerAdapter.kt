@@ -1,4 +1,4 @@
-package com.jackchance.live360.vod.adapter
+package com.jackchance.live360.vodlist.adapter
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

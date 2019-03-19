@@ -1,4 +1,4 @@
-package com.jackchance.live360.vod.fragement
+package com.jackchance.live360.livelist.fragement
 
 import android.content.Context
 import android.os.Bundle
@@ -10,34 +10,26 @@ import android.view.View
 import android.view.ViewGroup
 import com.aspsine.irecyclerview.IRecyclerView
 import com.jackchance.live360.R
-import com.jackchance.live360.util.toLiveActivity
-import com.jackchance.live360.vod.adapter.VodVideoRecyclerViewAdapter
-import com.jackchance.live360.vod.data.VodData
-import com.jackchance.live360.vod.data.VodListBuilder
+import com.jackchance.live360.livelist.data.LiveData
+import com.jackchance.live360.livelist.data.VideoListBuilder
+import com.jackchance.live360.livelist.ui.MyVideoRecyclerViewAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 
 /**
  * Created by lijiachang on 2018/11/20
  */
-class VodVideoListFragment : Fragment() {
+class HomeLiveListFragment : Fragment() {
 
     // Customize parameters
     private var columnCount = 1
 
+    private var listener: OnLiveListInteractionListener? = null
+
     private lateinit var iRecyclerView: IRecyclerView
     private lateinit var refreshLayout: SmartRefreshLayout
 
-    private var liveDataList: MutableList<VodData> = ArrayList()
-    private lateinit var myAdapter: VodVideoRecyclerViewAdapter
-    private val delegate: VodVideoRecyclerViewAdapter.VodVideoRecyclerViewAdapterDelegate
-
-    init {
-        delegate = object : VodVideoRecyclerViewAdapter.VodVideoRecyclerViewAdapterDelegate {
-            override fun onClick(position: Int, item: VodData) {
-                activity?.toLiveActivity(item.resourceUrl, item.isVr)
-            }
-        }
-    }
+    private var liveDataList: MutableList<LiveData> = ArrayList()
+    private lateinit var myAdapter: MyVideoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +41,7 @@ class VodVideoListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragement_video_list_for_tab, container, false)
+        val view = inflater.inflate(R.layout.fragment_video_list, container, false)
 
         iRecyclerView = view.findViewById(R.id.list)
         refreshLayout = view.findViewById(R.id.refresh_layout)
@@ -67,7 +59,7 @@ class VodVideoListFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            myAdapter = VodVideoRecyclerViewAdapter(liveDataList, delegate)
+            myAdapter = MyVideoRecyclerViewAdapter(liveDataList,listener)
             adapter = myAdapter
         }
         return view
@@ -75,18 +67,37 @@ class VodVideoListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        liveDataList.clear()
         loadLiveData(0)
     }
 
-    private fun loadLiveData(index: Int) {
-        val appendItem: MutableList<VodData>?
-        appendItem = VodListBuilder.getVodList {
+    private fun loadLiveData(index: Int){
+        val appendItem: MutableList<LiveData>?
+        appendItem = VideoListBuilder.getVideoList{
             refreshLayout.finishRefresh()
             refreshLayout.finishLoadmore()
         }
         liveDataList.addAll(appendItem)
         myAdapter.notifyDataSetChanged()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnLiveListInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException(context.toString() + " 没有实现OnListFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    interface OnLiveListInteractionListener {
+
+        fun onLiveListItemClick(item: LiveData)
+
     }
 
     companion object {
@@ -95,7 +106,7 @@ class VodVideoListFragment : Fragment() {
 
         @JvmStatic
         fun newInstance(columnCount: Int = 1) =
-                VodVideoListFragment().apply {
+                HomeLiveListFragment().apply {
                     arguments = Bundle().apply {
                         putInt(ARG_COLUMN_COUNT, columnCount)
                     }

@@ -1,4 +1,4 @@
-package com.jackchance.live360.videolist.data
+package com.jackchance.live360.livelist.data
 
 /**
  *  Created by lijiachang on 2018/11/24

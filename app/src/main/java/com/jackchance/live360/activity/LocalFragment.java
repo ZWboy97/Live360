@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import com.jackchance.live360.R;
 import com.jackchance.live360.util.Settings;
-import com.jackchance.live360.videolist.data.Video;
+import com.jackchance.live360.livelist.data.Video;
 import com.jackchance.live360.model.GetList;
 import java.util.ArrayList;
 

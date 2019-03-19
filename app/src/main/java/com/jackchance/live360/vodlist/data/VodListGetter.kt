@@ -1,6 +1,6 @@
-package com.jackchance.live360.vod.data
+package com.jackchance.live360.vodlist.data
 
-import com.jackchance.live360.videolist.data.Publisher
+import com.jackchance.live360.livelist.data.Publisher
 import java.util.ArrayList
 
 /**

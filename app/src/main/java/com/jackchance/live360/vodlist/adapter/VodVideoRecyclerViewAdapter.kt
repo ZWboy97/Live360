@@ -1,4 +1,4 @@
-package com.jackchance.live360.vod.adapter
+package com.jackchance.live360.vodlist.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -8,10 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.jackchance.live360.R
 import com.jackchance.live360.util.loadUrl
-import com.jackchance.live360.vod.data.VodData
-import de.hdodenhof.circleimageview.CircleImageView
+import com.jackchance.live360.vodlist.data.VodData
 import kotlinx.android.synthetic.main.fragement_vod_video_adapter_view.view.*
-import kotlinx.android.synthetic.main.fragment_video_item.view.*
 
 /**
  * Created by lijiachang on 2018/11/24

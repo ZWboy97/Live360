@@ -29,6 +29,11 @@
             android:layout_height="match_parent" />
 
         <FrameLayout
+            android:id="@+id/home_setting_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
             android:id="@+id/my_misc_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

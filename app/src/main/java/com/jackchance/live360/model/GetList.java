@@ -1,7 +1,7 @@
 package com.jackchance.live360.model;
 
 import com.jackchance.live360.activity.LocalFragment;
-import com.jackchance.live360.videolist.data.Video;
+import com.jackchance.live360.livelist.data.Video;
 
 import java.io.File;
 import java.io.FileFilter;

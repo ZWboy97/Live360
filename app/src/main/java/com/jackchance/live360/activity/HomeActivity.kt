@@ -9,15 +9,16 @@ import android.view.View
 import android.widget.CheckedTextView
 import android.widget.FrameLayout
 import com.jackchance.live360.R
-import com.jackchance.live360.fragment.LivePublishFragment
+import com.jackchance.live360.mylive.LivePublishFragment
 import com.jackchance.live360.util.toLiveActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
-import com.jackchance.live360.videolist.data.LiveData
-import com.jackchance.live360.videolist.fragement.HomeLiveListFragment
-import com.jackchance.live360.vod.VodListFragment
+import com.jackchance.live360.livelist.data.LiveData
+import com.jackchance.live360.livelist.fragement.HomeLiveListFragment
+import com.jackchance.live360.vodlist.VodListFragment
 
-class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
+class HomeActivity : BaseActivity(), View.OnClickListener,
+    HomeLiveListFragment.OnLiveListInteractionListener {
 
     private val homeLiveListButton: CheckedTextView by viewById(R.id.home_live_list_button)
     private val homeKindListButton: CheckedTextView by viewById(R.id.home_kind_button)
@@ -26,11 +27,18 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
     private val homeMiscButton: CheckedTextView by viewById(R.id.home_misc_button)
     private val homeLiveFragment: FrameLayout by viewById(R.id.live_list_fragment)
     private val homeKindFragment: FrameLayout by viewById(R.id.vod_list_fragment)
-    private val homeSettingFragment: FrameLayout by viewById(R.id.my_misc_fragment)
+    private val homePublishFragment: FrameLayout by viewById(R.id.live_publish_fragment)
+    private val homeSettingFragment: FrameLayout by viewById(R.id.home_setting_fragment)
+    private val homeMiscFragment: FrameLayout by viewById(R.id.my_misc_fragment)
 
     private var currentSelected: Int = -1
     private val liveListFragment = HomeLiveListFragment.newInstance(1)
-    private val vodListFrameLayout = VodListFragment.newInstance("","")
+    private val vodListFrameLayout by lazy {
+        VodListFragment.newInstance("", "")
+    }
+    private val livePublishFragment by lazy {
+        LivePublishFragment.newInstance("", "")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +50,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         homeKindListButton.setOnClickListener(this)
         homePublishButton.setOnClickListener(this)
         homeSettingButton.setOnClickListener(this)
-
         setSelectedFragment(HOME_LIVE)
     }
 
@@ -68,20 +75,21 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
             }
             HOME_PUBLISH -> {
                 homePublishButton.isChecked = true
-                fragment = LivePublishFragment.newInstance("","")
-                transaction.replace(R.id.live_publish_fragment, fragment)
+                transaction.replace(R.id.live_publish_fragment, livePublishFragment)
                 transaction.commit()
             }
             HOME_SETTING -> {
                 homeSettingButton.isChecked = true
+                //todo
                 fragment = HomeLiveListFragment.newInstance(1)
-                transaction.replace(R.id.my_misc_fragment, fragment)
+                transaction.replace(R.id.home_setting_fragment, fragment)
                 transaction.commit()
             }
             else -> {
                 homeLiveListButton.isChecked = true
+                //todo
                 fragment = HomeLiveListFragment.newInstance(1)
-                transaction.replace(R.id.live_list_fragment, fragment)
+                transaction.replace(R.id.my_misc_fragment, fragment)
                 transaction.commit()
             }
         }
@@ -102,6 +110,9 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
             R.id.home_setting_button -> {
                 setSelectedFragment(HOME_SETTING)
             }
+            R.id.home_misc_button -> {
+                setSelectedFragment(HOEM_MISC)
+            }
         }
     }
 
@@ -110,39 +121,42 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         homeKindListButton.isChecked = false
         homePublishButton.isChecked = false
         homeSettingButton.isChecked = false
+        homeMiscButton.isChecked = false
     }
 
     fun updateFragementVisiable(index: Int) {
+        homeLiveFragment.visible = false
+        homeKindFragment.visible = false
+        homePublishFragment.visible = false
+        homeSettingFragment.visible = false
+        homeMiscFragment.visible = false
         when (index) {
             HOME_LIVE -> {
                 homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
             }
             HOME_KIND -> {
-                homeLiveFragment.visible = false
                 homeKindFragment.visible = true
-                homeSettingFragment.visible = false
+
             }
             HOME_PUBLISH -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
+                homePublishFragment.visible = true
             }
             HOME_SETTING -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
+                homeSettingFragment.visible = true
+            }
+            HOEM_MISC -> {
+                homeMiscFragment.visible = true
             }
             else -> {
                 homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
             }
         }
     }
 
-    override fun onListFragmentInteraction(item: LiveData) {
+    /**
+     * 处理直播列表item
+     */
+    override fun onLiveListItemClick(item: LiveData) {
         if (item.rtmpUrl.isEmpty()) {
             return
         }
@@ -154,6 +168,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         private const val HOME_KIND = 1
         private const val HOME_PUBLISH = 2
         private const val HOME_SETTING = 3
+        private const val HOEM_MISC = 4
     }
 
 }

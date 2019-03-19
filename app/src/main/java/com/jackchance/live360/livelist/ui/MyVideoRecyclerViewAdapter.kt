@@ -1,4 +1,4 @@
-package com.jackchance.live360.videolist.ui
+package com.jackchance.live360.livelist.ui
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import android.widget.TextView
 import com.jackchance.live360.R
 import com.jackchance.live360.util.loadUrl
 import com.jackchance.live360.util.visible
-import com.jackchance.live360.videolist.data.LiveData
-import com.jackchance.live360.videolist.fragement.HomeLiveListFragment.OnListFragmentInteractionListener
+import com.jackchance.live360.livelist.data.LiveData
+import com.jackchance.live360.livelist.fragement.HomeLiveListFragment
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_video_item.view.*
 
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_video_item.view.*
 
 class MyVideoRecyclerViewAdapter(
         private val liveDataList: List<LiveData>,
-        private val mListener: OnListFragmentInteractionListener?)
+        private val mListener: HomeLiveListFragment.OnLiveListInteractionListener?)
     : RecyclerView.Adapter<MyVideoRecyclerViewAdapter.ViewHolder>() {
 
     private val mOnClickListener: View.OnClickListener
@@ -28,7 +28,7 @@ class MyVideoRecyclerViewAdapter(
     init {
         mOnClickListener = View.OnClickListener { v ->
             val item = v.tag as LiveData
-            mListener?.onListFragmentInteraction(item)
+            mListener?.onLiveListItemClick(item)
         }
     }
 

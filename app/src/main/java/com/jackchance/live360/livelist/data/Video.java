@@ -1,4 +1,4 @@
-package com.jackchance.live360.videolist.data;
+package com.jackchance.live360.livelist.data;
 
 import com.jackchance.live360.util.LoadedImage;
 
