@@ -53,5 +53,8 @@
     <color name="text_color1">#1d1c1c</color>
     <color name="text_003">#999999</color>
     <color name="bg_white">#ffffff</color>
+    <color name="bt_enable_false">#949494</color>
+    <color name="bt_enable_true">#4CAF50</color>
+    <color name="bt_clicked">#3E8B42</color>
 
 </resources>

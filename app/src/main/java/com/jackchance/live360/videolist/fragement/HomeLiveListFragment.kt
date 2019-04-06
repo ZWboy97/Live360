@@ -1,6 +1,7 @@
 package com.jackchance.live360.videolist.fragement
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -8,8 +9,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.aspsine.irecyclerview.IRecyclerView
 import com.jackchance.live360.R
+import com.jackchance.live360.activity.LivePublishActivity
 import com.jackchance.live360.videolist.data.LiveData
 import com.jackchance.live360.videolist.data.VideoListBuilder
 import com.jackchance.live360.videolist.ui.MyVideoRecyclerViewAdapter
@@ -27,6 +30,7 @@ class HomeLiveListFragment : Fragment() {
 
     private lateinit var iRecyclerView: IRecyclerView
     private lateinit var refreshLayout: SmartRefreshLayout
+    private lateinit var livePublishButton: TextView
 
     private var liveDataList: MutableList<LiveData> = ArrayList()
     private lateinit var myAdapter: MyVideoRecyclerViewAdapter
@@ -45,6 +49,7 @@ class HomeLiveListFragment : Fragment() {
 
         iRecyclerView = view.findViewById(R.id.list)
         refreshLayout = view.findViewById(R.id.refresh_layout)
+        livePublishButton = view.findViewById(R.id.live_publish_button)
         refreshLayout.setOnRefreshListener {
             liveDataList.clear()
             loadLiveData(0)
@@ -59,7 +64,7 @@ class HomeLiveListFragment : Fragment() {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            myAdapter = MyVideoRecyclerViewAdapter(liveDataList,listener)
+            myAdapter = MyVideoRecyclerViewAdapter(liveDataList, listener)
             adapter = myAdapter
         }
         return view
@@ -68,11 +73,15 @@ class HomeLiveListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         loadLiveData(0)
+        livePublishButton.setOnClickListener {
+            val intent = Intent(context, LivePublishActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    private fun loadLiveData(index: Int){
+    private fun loadLiveData(index: Int) {
         val appendItem: MutableList<LiveData>?
-        appendItem = VideoListBuilder.getVideoList{
+        appendItem = VideoListBuilder.getVideoList {
             refreshLayout.finishRefresh()
             refreshLayout.finishLoadmore()
         }

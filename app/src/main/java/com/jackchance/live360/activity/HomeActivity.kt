@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentTransaction
 import android.view.View
 import android.widget.CheckedTextView
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import com.jackchance.live360.R
-import com.jackchance.live360.fragment.LivePublishFragment
 import com.jackchance.live360.util.toLiveActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
@@ -20,17 +20,21 @@ import com.jackchance.live360.vod.VodListFragment
 class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
 
     private val homeLiveListButton: CheckedTextView by viewById(R.id.home_live_list_button)
-    private val homeKindListButton: CheckedTextView by viewById(R.id.home_kind_button)
-    private val homePublishButton: CheckedTextView by viewById(R.id.home_publish_button)
-    private val homeSettingButton: CheckedTextView by viewById(R.id.home_setting_button)
+    private val homeVodListButton: CheckedTextView by viewById(R.id.home_kind_button)
     private val homeMiscButton: CheckedTextView by viewById(R.id.home_misc_button)
-    private val homeLiveFragment: FrameLayout by viewById(R.id.live_list_fragment)
-    private val homeKindFragment: FrameLayout by viewById(R.id.vod_list_fragment)
-    private val homeSettingFragment: FrameLayout by viewById(R.id.my_misc_fragment)
+
+    private val homeLiveListButtonLayout: LinearLayout by viewById(R.id.home_live_button_layout)
+    private val homeVodListButtonLayout: LinearLayout by viewById(R.id.home_kind_button_layout)
+    private val homeMiscButtonLayout: LinearLayout by viewById(R.id.home_misc_button_layout)
+
+    private val homeLiveFrameLayout: FrameLayout by viewById(R.id.live_list_fragment)
+    private val homeVodFrameLayout: FrameLayout by viewById(R.id.vod_list_fragment)
+    private val homeMiscFrameLayout: FrameLayout by viewById(R.id.my_misc_fragment)
 
     private var currentSelected: Int = -1
-    private val liveListFragment = HomeLiveListFragment.newInstance(1)
-    private val vodListFrameLayout = VodListFragment.newInstance("","")
+    private val homeLiveListFragment = HomeLiveListFragment.newInstance(1)
+    private val homeVodListFragment = VodListFragment.newInstance("", "")
+    private val homeMiscFragment = HomeLiveListFragment.newInstance(1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +43,11 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
         homeLiveListButton.setOnClickListener(this)
-        homeKindListButton.setOnClickListener(this)
-        homePublishButton.setOnClickListener(this)
-        homeSettingButton.setOnClickListener(this)
+        homeVodListButton.setOnClickListener(this)
+        homeMiscButton.setOnClickListener(this)
+        homeLiveListButtonLayout.setOnClickListener(this)
+        homeVodListButtonLayout.setOnClickListener(this)
+        homeMiscButtonLayout.setOnClickListener(this)
 
         setSelectedFragment(HOME_LIVE)
     }
@@ -58,30 +64,17 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         when (selectIndex) {
             HOME_LIVE -> {
                 homeLiveListButton.isChecked = true
-                transaction.replace(R.id.live_list_fragment, liveListFragment)
+                transaction.replace(R.id.live_list_fragment, homeLiveListFragment)
                 transaction.commit()
             }
-            HOME_KIND -> {
-                homeKindListButton.isChecked = true
-                transaction.replace(R.id.vod_list_fragment, vodListFrameLayout)
+            HOME_VOD -> {
+                homeVodListButton.isChecked = true
+                transaction.replace(R.id.vod_list_fragment, homeVodListFragment)
                 transaction.commit()
             }
-            HOME_PUBLISH -> {
-                homePublishButton.isChecked = true
-                fragment = LivePublishFragment.newInstance("","")
-                transaction.replace(R.id.live_publish_fragment, fragment)
-                transaction.commit()
-            }
-            HOME_SETTING -> {
-                homeSettingButton.isChecked = true
-                fragment = HomeLiveListFragment.newInstance(1)
-                transaction.replace(R.id.my_misc_fragment, fragment)
-                transaction.commit()
-            }
-            else -> {
-                homeLiveListButton.isChecked = true
-                fragment = HomeLiveListFragment.newInstance(1)
-                transaction.replace(R.id.live_list_fragment, fragment)
+            HOME_MISC -> {
+                homeMiscButton.isChecked = true
+                transaction.replace(R.id.live_list_fragment, homeMiscFragment)
                 transaction.commit()
             }
         }
@@ -90,56 +83,49 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.home_live_list_button -> {
+            R.id.home_live_list_button,
+            R.id.home_live_button_layout -> {
                 setSelectedFragment(HOME_LIVE)
             }
+            R.id.home_kind_button_layout,
             R.id.home_kind_button -> {
-                setSelectedFragment(HOME_KIND)
+                setSelectedFragment(HOME_VOD)
             }
-            R.id.home_publish_button -> {
-                setSelectedFragment(HOME_PUBLISH)
-            }
-            R.id.home_setting_button -> {
-                setSelectedFragment(HOME_SETTING)
+            R.id.home_misc_button_layout,
+            R.id.home_misc_button -> {
+                setSelectedFragment(HOME_MISC)
             }
         }
     }
 
-    fun unCheckedButton() {
+    private fun unCheckedButton() {
         homeLiveListButton.isChecked = false
-        homeKindListButton.isChecked = false
-        homePublishButton.isChecked = false
-        homeSettingButton.isChecked = false
+        homeVodListButton.isChecked = false
+        homeMiscButton.isChecked = false
     }
 
     fun updateFragementVisiable(index: Int) {
+        invisiableAllFragment()
         when (index) {
             HOME_LIVE -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
+                homeLiveFrameLayout.visible = true
             }
-            HOME_KIND -> {
-                homeLiveFragment.visible = false
-                homeKindFragment.visible = true
-                homeSettingFragment.visible = false
+            HOME_VOD -> {
+                homeVodFrameLayout.visible = true
             }
-            HOME_PUBLISH -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
-            }
-            HOME_SETTING -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
+            HOME_MISC -> {
+                homeLiveFrameLayout.visible = true
             }
             else -> {
-                homeLiveFragment.visible = true
-                homeKindFragment.visible = false
-                homeSettingFragment.visible = false
+                homeLiveFrameLayout.visible = true
             }
         }
+    }
+
+    private fun invisiableAllFragment() {
+        homeLiveFrameLayout.visible = false
+        homeVodFrameLayout.visible = false
+        homeMiscFrameLayout.visible = false
     }
 
     override fun onListFragmentInteraction(item: LiveData) {
@@ -151,9 +137,8 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
 
     companion object {
         private const val HOME_LIVE = 0
-        private const val HOME_KIND = 1
-        private const val HOME_PUBLISH = 2
-        private const val HOME_SETTING = 3
+        private const val HOME_VOD = 1
+        private const val HOME_MISC = 2
     }
 
 }

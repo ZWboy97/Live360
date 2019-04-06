@@ -54,7 +54,7 @@ class VodListFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private fun initView() {
         tabLayout.tabMode = TabLayout.MODE_FIXED
         for (title in titles) {
-            tabLayout.addTab(tabLayout.newTab().setText(title))
+            tabLayout.addTab(tabLayout.newTab().setText(title).setIcon(R.drawable.icon_home_360_selseted))
         }
         tabLayout.addOnTabSelectedListener(this)
         viewPagerAdapter = MyViewPagerAdapter(fragmentManager, titles.toMutableList(), fragments.toMutableList())

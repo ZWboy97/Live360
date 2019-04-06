@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,11 +15,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="创建直播间"
-            android:textSize="18dp"
-            android:textColor="@color/colorblack"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="直播详情"
+            android:textColor="@color/colorblack"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 
@@ -30,8 +31,10 @@
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/infomation_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="395dp"
+            android:layout_height="558dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="165dp">
 
             <ImageView
                 android:id="@+id/live_cover_image"
@@ -40,18 +43,6 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_empty_zhihu"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/image_upload_lable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="点击选择封面图片"
-                android:textColor="@color/player_grey"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@id/live_cover_image"
-                app:layout_constraintEnd_toEndOf="@id/live_cover_image"
-                app:layout_constraintStart_toStartOf="@id/live_cover_image"
-                app:layout_constraintTop_toTopOf="@id/live_cover_image" />
 
             <View
                 android:id="@+id/image_content_divier"
@@ -70,13 +61,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/image_content_divier" />
 
-            <EditText
+            <TextView
                 android:id="@+id/title_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="10dp"
-                android:textSize="20dp"
+                android:text="直播标题"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/title_lable" />
 
@@ -86,18 +78,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
                 android:text="直播简介："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/title_edit_text" />
 
-
-            <EditText
+            <TextView
                 android:id="@+id/desc_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="10dp"
+                android:text="直播简介"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/desc_lable" />
 
             <TextView
@@ -110,13 +104,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/desc_edit_text" />
 
-            <Switch
+            <TextView
                 android:id="@+id/switch_live_model"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="20dp"
-                android:text="全景直播模式：     "
+                android:layout_marginTop="10dp"
+                android:text="全景直播模式"
+                android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/kind_lable" />
 
@@ -125,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="直播时间："
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/switch_live_model" />
@@ -135,10 +131,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="03-06 00:00"
-                android:textColor="@color/pd_blue"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time_lable" />
 
@@ -146,9 +142,10 @@
                 android:id="@+id/start_end_time_div"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="至"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/end_time_picker"
                 app:layout_constraintStart_toEndOf="@id/start_time_picker"
                 app:layout_constraintTop_toBottomOf="@id/time_lable" />
@@ -157,18 +154,62 @@
                 android:id="@+id/end_time_picker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="80dp"
                 android:text="03-06 00:00"
-                android:textColor="@color/pd_blue"
                 android:textSize="18dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time_lable" />
+
+            <TextView
+                android:id="@+id/push_url_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="推流地址：(输入到OBS等推流软件中)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/end_time_picker" />
+
+            <TextView
+                android:id="@+id/push_url_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="rtmp:..."
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/push_url_lable" />
+
+            <TextView
+                android:id="@+id/pull_url_lable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="拉流地址：(用户观看直播的地址)"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/push_url_text" />
+
+            <TextView
+                android:id="@+id/pull_url_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:text="rtmp：。。。"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pull_url_lable" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/end_time_picker" />
+                app:layout_constraintTop_toBottomOf="@id/pull_url_text" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -182,7 +223,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/button_bg_selector"
-        android:text="发布直播"
+        android:text="开始直播"
         android:textColor="@color/bg_white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent" />

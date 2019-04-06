@@ -9,23 +9,11 @@ class LiveRoom(
     var roomName: String = "",
     var roomDesc: String = "",
     var roomCoverImageUrl: String = "",
-    var roomStatus: LiveStatus = LiveStatus.WAITING,
+    var roomStatus: Int = 0,
     var pullRTMPUrl: String = "",
     var pullHLSUrl: String = "",
     var playbackUrl: String = "",
     var startTime: Long = 0L,
     var endTime: Long = 0L,
     var isVR: Boolean = false
-) : BaseData() {
-
-    companion object {
-        enum class LiveStatus {
-            WAITING,
-            LIVING,
-            PREPARING,
-            READY,
-            ERROR
-        }
-    }
-
-}
+) : BaseData()

@@ -36,4 +36,6 @@
     <string name="debugon">Debug开</string>
     <string name="debugchange">Debubg开关</string>
     <string name="vrchange">VR开关</string>
+    <string name="time_picker_live_start_time">直播开始时间</string>
+    <string name="time_picker_live_end_time">直播结束时间</string>
 </resources>

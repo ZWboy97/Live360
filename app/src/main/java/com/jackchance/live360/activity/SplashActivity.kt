@@ -25,17 +25,6 @@ class SplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-
-        DataApi.getDataCall().enqueue(object : Callback<Translation> {
-            override fun onFailure(call: Call<Translation>, t: Throwable) {
-                System.out.println("连接失败")
-            }
-
-            override fun onResponse(call: Call<Translation>, response: Response<Translation>) {
-                response.body()?.show()
-            }
-        })
-
         handler.sendEmptyMessageDelayed(MSG_TO_MAINACTIVITY, WAIT_DELAY)
 
     }

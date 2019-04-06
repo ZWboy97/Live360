@@ -24,11 +24,6 @@
             android:layout_height="match_parent" />
 
         <FrameLayout
-            android:id="@+id/live_publish_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <FrameLayout
             android:id="@+id/my_misc_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -44,10 +39,11 @@
     <LinearLayout
         android:id="@+id/bottom_container"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/home_live_button_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -55,12 +51,13 @@
             android:orientation="vertical">
             <CheckedTextView
                 android:id="@+id/home_live_list_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/selector_home_video_list_bg"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/home_kind_button_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -68,38 +65,13 @@
             android:orientation="vertical">
             <CheckedTextView
                 android:id="@+id/home_kind_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/selector_home_kind_bg"/>
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <CheckedTextView
-                android:id="@+id/home_publish_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/selector_home_publish_bg"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-            <CheckedTextView
-                android:id="@+id/home_setting_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/selector_home_setting_bg"/>
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/home_misc_button_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -107,8 +79,8 @@
             android:orientation="vertical">
             <CheckedTextView
                 android:id="@+id/home_misc_button"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:background="@drawable/selector_home_misc_bg"/>
         </LinearLayout>
 

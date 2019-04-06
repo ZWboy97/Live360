@@ -76,4 +76,14 @@ dependencies {
     // mmkv
     implementation 'com.tencent:mmkv:1.0.16'
 
+    //Matissse
+    implementation 'com.zhihu.android:matisse:0.4.3'
+
+    implementation 'pub.devrel:easypermissions:2.0.1'
+
+    implementation 'com.aliyun.dpa:oss-android-sdk:+'
+
+    implementation 'com.jzxiang.pickerview:TimePickerDialog:1.0.1'
+
+
 }
