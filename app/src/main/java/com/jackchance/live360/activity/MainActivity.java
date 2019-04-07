@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.jackchance.live360.R;
+import com.jackchance.live360.data.LiveRoom;
 import com.jackchance.live360.util.ActivityUtilKt;
 import com.jackchance.live360.videolist.data.LiveData;
 import com.jackchance.live360.videolist.fragement.HomeLiveListFragment;
@@ -71,11 +72,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onListFragmentInteraction(@Nullable LiveData item) {
-        if(item.getRtmpUrl().isEmpty()){
+    public void onListFragmentInteraction(@Nullable LiveRoom item) {
+        if(item.getPullRTMPUrl().isEmpty()){
             return;
         }
-        ActivityUtilKt.toLiveActivity(this, item.getRtmpUrl(), false);
+        ActivityUtilKt.toLiveActivity(this, item.getPullRTMPUrl(), false);
     }
 
     @Override

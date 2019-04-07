@@ -68,9 +68,9 @@ class LivePublishActivity : FragmentActivity() {
         setContentView(R.layout.fragment_live_publish)
         liveCoverImageView = findViewById(R.id.live_cover_image)
         imageUploadLabel = findViewById(R.id.image_upload_lable)
-        liveTitleEditTextView = findViewById(R.id.title_edit_text)
-        liveDescEditText = findViewById(R.id.desc_edit_text)
-        liveModelSwitch = findViewById(R.id.switch_live_model)
+        liveTitleEditTextView = findViewById(R.id.live_title_text)
+        liveDescEditText = findViewById(R.id.live_desc_text)
+        liveModelSwitch = findViewById(R.id.live_model_text)
         liveStartTime = findViewById(R.id.start_time_picker)
         liveEndTime = findViewById(R.id.end_time_picker)
         livePublishButton = findViewById(R.id.submit_button)
@@ -135,14 +135,17 @@ class LivePublishActivity : FragmentActivity() {
     }
 
     private fun postLiveRoomAndMessage() {
+        if (isPostLiveSuccess) {
+            return
+        }
         val liveRoom = LiveRoom().apply {
             this.hostId = 1
-            this.endTime = endTime
+            this.endTime = this@LivePublishActivity.endTime
             this.isVR = isVRModel
             this.roomCoverImageUrl = OSSHelper.getImageUrlFromKey(coverImageKey ?: "")
             this.roomDesc = descText ?: ""
             this.roomName = titleText ?: ""
-            this.startTime = startTime
+            this.startTime = this@LivePublishActivity.startTime
         }
 
         DataApi.postLiveRooms(liveRoom).enqueue(object : Callback<LiveRoom> {
@@ -211,6 +214,9 @@ class LivePublishActivity : FragmentActivity() {
     }
 
     private fun uploadCoverImage() {
+        if (isUploadImageSuccess) {
+            return
+        }
         var filePath = ""
         var contentResolver = this.contentResolver
         val cursor = contentResolver.query(selectImageUri,
@@ -259,11 +265,15 @@ class LivePublishActivity : FragmentActivity() {
     private fun uploadAndPostFinish() {
         livePublishButton.isEnabled = true
         progressBar.visible = false
+        isPostLiveSuccess = false
+        isUploadImageSuccess = false
+        isPostLiveSuccess = false
     }
 
     private fun toSuccessActivity() {
         val intent = Intent(this@LivePublishActivity, LiveDetailActivity::class.java)
         intent.putExtra("liveroom", liveRoom?.writeJson())
+        intent.putExtra("user_model", false)
         startActivity(intent)
     }
 
@@ -280,6 +290,7 @@ class LivePublishActivity : FragmentActivity() {
                 selectImageUri = uriList.get(0)
                 liveCoverImageView.setImageURI(selectImageUri)
                 imageUploadLabel.visible = false
+                isUploadImageSuccess = false
             }
         }
     }

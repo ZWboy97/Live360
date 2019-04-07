@@ -71,7 +71,7 @@
                 app:layout_constraintTop_toBottomOf="@id/image_content_divier" />
 
             <EditText
-                android:id="@+id/title_edit_text"
+                android:id="@+id/live_title_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
@@ -88,11 +88,11 @@
                 android:layout_marginLeft="50dp"
                 android:text="直播简介："
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_edit_text" />
+                app:layout_constraintTop_toBottomOf="@id/live_title_text" />
 
 
             <EditText
-                android:id="@+id/desc_edit_text"
+                android:id="@+id/live_desc_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="50dp"
@@ -108,10 +108,10 @@
                 android:layout_marginTop="20dp"
                 android:text="直播类型："
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/desc_edit_text" />
+                app:layout_constraintTop_toBottomOf="@id/live_desc_text" />
 
             <Switch
-                android:id="@+id/switch_live_model"
+                android:id="@+id/live_model_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
@@ -128,7 +128,7 @@
                 android:layout_marginTop="20dp"
                 android:text="直播时间："
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/switch_live_model" />
+                app:layout_constraintTop_toBottomOf="@id/live_model_text" />
 
             <TextView
                 android:id="@+id/start_time_picker"

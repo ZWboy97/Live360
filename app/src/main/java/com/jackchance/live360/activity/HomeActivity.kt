@@ -1,5 +1,6 @@
 package com.jackchance.live360.activity
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.CheckedTextView
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import com.jackchance.live360.R
+import com.jackchance.live360.data.LiveRoom
 import com.jackchance.live360.util.toLiveActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
@@ -60,7 +62,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         currentSelected = selectIndex
         val fragmentManager: FragmentManager = supportFragmentManager
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-        val fragment: Fragment
         when (selectIndex) {
             HOME_LIVE -> {
                 homeLiveListButton.isChecked = true
@@ -128,11 +129,10 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         homeMiscFrameLayout.visible = false
     }
 
-    override fun onListFragmentInteraction(item: LiveData) {
-        if (item.rtmpUrl.isEmpty()) {
-            return
-        }
-        this.toLiveActivity(item.rtmpUrl, item.isVr)
+    override fun onListFragmentInteraction(item: LiveRoom) {
+        val intent = Intent(this, LiveDetailActivity::class.java)
+        intent.putExtra("liveroom", item.writeJson())
+        startActivity(intent)
     }
 
     companion object {

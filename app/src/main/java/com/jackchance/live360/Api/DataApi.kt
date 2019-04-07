@@ -21,24 +21,24 @@ object DataApi {
 
     private val dataService: DataService = Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://39.106.194.43:8080/live360")
+            .baseUrl("http://10.128.205.196:8080/live360/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DataService::class.java)
 
     private interface DataService {
 
-        @POST("/livemessages")
+        @POST("livemessages/")
         fun postLiveMessage(@Body liveMessage: LiveMessage): Call<LiveMessage>
 
-        @GET("/livemessages")
+        @GET("livemessages/")
         fun getLiveMessages(): Call<LiveMessage>
 
-        @POST("/liverooms")
+        @POST("liverooms/")
         fun postLiveRooms(@Body liveRoom: LiveRoom): Call<LiveRoom>
 
-        @GET("liverooms")
-        fun getLiveRooms(): Call<LiveRoom>
+        @GET("liverooms/")
+        fun getLiveRooms(): Call<List<LiveRoom>>
 
     }
 
@@ -54,7 +54,7 @@ object DataApi {
         return dataService.postLiveRooms(liveRoom)
     }
 
-    fun getLiveRooms(): Call<LiveRoom> {
+    fun getLiveRooms(): Call<List<LiveRoom>> {
         return dataService.getLiveRooms()
     }
 

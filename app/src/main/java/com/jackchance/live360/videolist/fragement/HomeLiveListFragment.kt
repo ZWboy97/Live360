@@ -10,13 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import com.aspsine.irecyclerview.IRecyclerView
+import com.jackchance.live360.Api.DataApi
 import com.jackchance.live360.R
 import com.jackchance.live360.activity.LivePublishActivity
-import com.jackchance.live360.videolist.data.LiveData
+import com.jackchance.live360.data.LiveRoom
 import com.jackchance.live360.videolist.data.VideoListBuilder
 import com.jackchance.live360.videolist.ui.MyVideoRecyclerViewAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * Created by lijiachang on 2018/11/20
@@ -32,7 +37,7 @@ class HomeLiveListFragment : Fragment() {
     private lateinit var refreshLayout: SmartRefreshLayout
     private lateinit var livePublishButton: TextView
 
-    private var liveDataList: MutableList<LiveData> = ArrayList()
+    private var liveDataList: MutableList<LiveRoom> = ArrayList()
     private lateinit var myAdapter: MyVideoRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,13 +56,11 @@ class HomeLiveListFragment : Fragment() {
         refreshLayout = view.findViewById(R.id.refresh_layout)
         livePublishButton = view.findViewById(R.id.live_publish_button)
         refreshLayout.setOnRefreshListener {
-            liveDataList.clear()
             loadLiveData(0)
         }
         refreshLayout.setOnLoadmoreListener {
             loadLiveData(0)
         }
-
         // Set the adapter
         with(iRecyclerView) {
             layoutManager = when {
@@ -80,13 +83,19 @@ class HomeLiveListFragment : Fragment() {
     }
 
     private fun loadLiveData(index: Int) {
-        val appendItem: MutableList<LiveData>?
-        appendItem = VideoListBuilder.getVideoList {
-            refreshLayout.finishRefresh()
-            refreshLayout.finishLoadmore()
-        }
-        liveDataList.addAll(appendItem)
-        myAdapter.notifyDataSetChanged()
+        liveDataList.clear()
+        DataApi.getLiveRooms().enqueue(object : Callback<List<LiveRoom>> {
+            override fun onFailure(call: Call<List<LiveRoom>>, t: Throwable) {
+                Toast.makeText(context, "更新直播列表失败，请稍后重试！", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<List<LiveRoom>>, response: Response<List<LiveRoom>>) {
+                response.body()?.let {
+                    liveDataList.addAll(it)
+                }
+                myAdapter.notifyDataSetChanged()
+            }
+        })
     }
 
     override fun onAttach(context: Context) {
@@ -105,7 +114,7 @@ class HomeLiveListFragment : Fragment() {
 
     interface OnListFragmentInteractionListener {
 
-        fun onListFragmentInteraction(item: LiveData)
+        fun onListFragmentInteraction(item: LiveRoom)
 
     }
 

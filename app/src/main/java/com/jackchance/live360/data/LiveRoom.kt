@@ -13,6 +13,7 @@ class LiveRoom(
     var pullRTMPUrl: String = "",
     var pullHLSUrl: String = "",
     var playbackUrl: String = "",
+    var pushUrl: String = "",
     var startTime: Long = 0L,
     var endTime: Long = 0L,
     var isVR: Boolean = false

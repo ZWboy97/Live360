@@ -13,6 +13,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.jackchance.live360.R
 import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -49,8 +51,8 @@ fun Int.dip2Pix(context: Context): Int {
     return UiUtil.dip2pix(context, this.toFloat())
 }
 
-fun Float.dip2Pix(context: Context): Int{
-    return UiUtil.dip2pix(context,this)
+fun Float.dip2Pix(context: Context): Int {
+    return UiUtil.dip2pix(context, this)
 }
 
 fun <T : View> Activity.viewById(@IdRes id: Int): Lazy<T> {
@@ -84,12 +86,20 @@ fun <T : View> ViewHolder.viewById(@IdRes id: Int): Lazy<T> = view.viewById(id)
  * Picasso 图片加载扩展
  */
 fun ImageView.loadUrl(url: String) {
+    if (url.isNullOrEmpty()) {
+        return
+    }
     Picasso.get()
             .load(url)
-            .placeholder(R.drawable.live360_background)
-            .error(R.drawable.abc_cab_background_internal_bg)
+            .placeholder(R.drawable.ic_empty_zhihu)
+            .error(R.drawable.ic_empty_zhihu)
             .into(this)
 
+}
+
+fun Long.toMMddHHmm(): String {
+    val formater = SimpleDateFormat("MM-dd HH:mm")
+    return formater.format(Date(this))
 }
 
 /**

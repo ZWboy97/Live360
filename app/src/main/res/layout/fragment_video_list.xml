@@ -54,14 +54,10 @@
             android:name="com.jackchance.live360.fragement.VideoListFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:loadMoreEnabled="true"
+            app:loadMoreEnabled="false"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             tools:context=".videolist.fragement.HomeLiveListFragment"
             tools:listitem="@layout/fragment_video_item" />
-
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

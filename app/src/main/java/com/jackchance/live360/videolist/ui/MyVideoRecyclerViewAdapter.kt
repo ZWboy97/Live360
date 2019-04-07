@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.jackchance.live360.R
+import com.jackchance.live360.data.LiveRoom
 import com.jackchance.live360.util.loadUrl
 import com.jackchance.live360.util.visible
-import com.jackchance.live360.videolist.data.LiveData
 import com.jackchance.live360.videolist.fragement.HomeLiveListFragment.OnListFragmentInteractionListener
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_video_item.view.*
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_video_item.view.*
  */
 
 class MyVideoRecyclerViewAdapter(
-        private val liveDataList: List<LiveData>,
+        private val liveDataList: List<LiveRoom>,
         private val mListener: OnListFragmentInteractionListener?)
     : RecyclerView.Adapter<MyVideoRecyclerViewAdapter.ViewHolder>() {
 
@@ -27,7 +27,7 @@ class MyVideoRecyclerViewAdapter(
 
     init {
         mOnClickListener = View.OnClickListener { v ->
-            val item = v.tag as LiveData
+            val item = v.tag as LiveRoom
             mListener?.onListFragmentInteraction(item)
         }
     }
@@ -40,19 +40,19 @@ class MyVideoRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = liveDataList[position]
-        holder.liveTitle.text = item.name
-        holder.liveDescription.text = item.description
-        holder.liveImage.loadUrl(item.imageUrl)
-        holder.publisherName.text = item.publisher?.nickName
-        //holder.publishTime.text =
-        if(item.publisherMessage.isNullOrEmpty()){
-            holder.publishMessage.visible = false
-        }else{
-            holder.publishMessage.text = item.publisherMessage
-        }
-        item.publisher?.avtarUrl?.let {
-            holder.publisherAvtar.loadUrl(it)
-        }
+        holder.liveTitle.text = item.roomName
+        holder.publishMessage.text = item.roomDesc
+        holder.liveImage.loadUrl(item.roomCoverImageUrl)
+//        holder.publisherName.text = "null"
+//        //holder.publishTime.text =
+//        if(item.publisherMessage.isNullOrEmpty()){
+//            holder.publishMessage.visible = false
+//        }else{
+//            holder.publishMessage.text = item.publisherMessage
+//        }
+//        item.publisher?.avtarUrl?.let {
+//            holder.publisherAvtar.loadUrl(it)
+//        }
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
@@ -69,6 +69,5 @@ class MyVideoRecyclerViewAdapter(
         val publisherName: TextView = mView.publisher_name_text
         val publishTime: TextView = mView.publish_time_text
         val publishMessage: TextView = mView.publisher_message
-
     }
 }
