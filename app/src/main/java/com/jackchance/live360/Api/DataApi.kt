@@ -21,7 +21,7 @@ object DataApi {
 
     private val dataService: DataService = Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://10.128.205.196:8080/live360/")
+            .baseUrl("http://39.106.194.43:8080/live360/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(DataService::class.java)

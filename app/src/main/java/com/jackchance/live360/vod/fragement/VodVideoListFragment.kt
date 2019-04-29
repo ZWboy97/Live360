@@ -1,6 +1,5 @@
 package com.jackchance.live360.vod.fragement
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -21,7 +20,6 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
  */
 class VodVideoListFragment : Fragment() {
 
-    // Customize parameters
     private var columnCount = 1
 
     private lateinit var iRecyclerView: IRecyclerView
@@ -41,7 +39,6 @@ class VodVideoListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
@@ -58,10 +55,8 @@ class VodVideoListFragment : Fragment() {
             loadLiveData(0)
         }
         refreshLayout.setOnLoadmoreListener {
-            loadLiveData(0)
         }
 
-        // Set the adapter
         with(iRecyclerView) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)

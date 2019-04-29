@@ -21,38 +21,46 @@ object VodListBuilder {
     fun getVodList(onSuccess: ()->Unit = {}): MutableList<VodData> {
         videoList.clear()
         videoList.add(VodData().apply {
-            name = "大美山西VR视频"
-            description = "大美山西系列--壶口瀑布，VR全景拍摄"
-            imageUrl = "http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature.jpg"
+            name = "壶口瀑布"
+            description = "大美山西系列，壶口瀑布"
+            imageUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg"
             publisher = Publisher(0,"小毛孩","http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg")
             resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/%E5%A4%A7%E7%BE%8E%E5%B1%B1%E8%A5%BF-%E5%A3%B6%E5%8F%A3%E7%80%91%E5%B8%83-VR%E8%A7%86%E9%A2%91%E7%89%87%E6%BA%90-UtoVR.mp4"
             isVr = true
         })
         videoList.add(VodData().apply {
-            name = "大美山西VR视频"
-            description = "大美山西系列--泽口古镇，VR全景拍摄"
-            imageUrl = "http://live360bucket.oss-cn-beijing.aliyuncs.com/image/background.jpg"
+            name = "裂谷彩虹"
+            description = "裂谷彩虹航拍VR"
+            imageUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/image/%E8%A3%82%E8%B0%B7.jpg"
             publisher = Publisher(0,"小毛孩","http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg")
-            resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/%E5%A4%A7%E7%BE%8E%E5%B1%B1%E8%A5%BF-%E5%A3%B6%E5%8F%A3%E7%80%91%E5%B8%83-VR%E8%A7%86%E9%A2%91%E7%89%87%E6%BA%90-UtoVR.mp4"
+            resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/output2.mp4"
             isVr = true
         })
         videoList.add(VodData().apply {
-            name = "全景视频资源"
-            description = "全景视频资源"
-            imageUrl = "http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg"
+            name = "武大樱花季"
+            description = "春天最美樱花大学"
+            imageUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/image/%E6%AD%A6%E5%A4%A7.jpeg"
             publisher = Publisher(0,"小毛孩","http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg")
-            resourceUrl = "rtmp://39.106.194.43/live/livestream.flv"
+            resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/%E6%AD%A6%E5%A4%A7.mp4"
             isVr = true
         })
         videoList.add(VodData().apply {
-            name = "全景视频资源"
-            description = "哈哈，全景视频资源"
-            imageUrl = "http://live360bucket.oss-cn-beijing.aliyuncs.com/image/background.jpg"
+            name = "篮球冠军杯"
+            description = "深圳宝安体育中心"
+            imageUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/image/%E7%AF%AE%E7%90%83%E8%B5%9B.jpg"
             publisher = Publisher(0,"小毛孩","http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg")
+            resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/%E7%AF%AE%E7%90%83%E8%B5%9B.mp4"
+            isVr = true
+        })
+        videoList.add(VodData().apply {
+            name = "VR过山车"
+            description = "VR体验极速过山车"
+            imageUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/image/%E8%BF%87%E5%B1%B1%E8%BD%A6.jpg"
+            publisher = Publisher(0,"小毛孩","http://live360bucket.oss-cn-beijing.aliyuncs.com/image/nature1.jpg")
+            resourceUrl = "https://live360bucket.oss-cn-beijing.aliyuncs.com/vrresource/%E8%BF%87%E5%B1%B1%E8%BD%A6.mp4"
             isVr = true
         })
         onSuccess.invoke()
-
         return videoList
     }
 }

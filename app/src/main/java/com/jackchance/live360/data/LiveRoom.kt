@@ -11,10 +11,12 @@ class LiveRoom(
     var roomCoverImageUrl: String = "",
     var roomStatus: Int = 0,
     var pullRTMPUrl: String = "",
+    var pullRTMPUrlHD: String = "",
     var pullHLSUrl: String = "",
     var playbackUrl: String = "",
     var pushUrl: String = "",
     var startTime: Long = 0L,
     var endTime: Long = 0L,
-    var isVR: Boolean = false
+    var isVR: Boolean = true,
+    var createTime: Long = 0L
 ) : BaseData()

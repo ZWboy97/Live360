@@ -58,7 +58,7 @@ class LiveDetailActivity : AppCompatActivity() {
         startLiveButton.setOnClickListener {
             if (isUserModel) {
                 liveRoom?.let {
-                    this.toLiveActivity(it.pullRTMPUrl, it.isVR)
+                    this.toLiveActivity(it)
                 }
             } else {
                 //启动 instat360 app

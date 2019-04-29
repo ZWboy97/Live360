@@ -16,7 +16,6 @@ import com.jackchance.live360.Api.DataApi
 import com.jackchance.live360.R
 import com.jackchance.live360.activity.LivePublishActivity
 import com.jackchance.live360.data.LiveRoom
-import com.jackchance.live360.videolist.data.VideoListBuilder
 import com.jackchance.live360.videolist.ui.MyVideoRecyclerViewAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import retrofit2.Call
@@ -59,7 +58,7 @@ class HomeLiveListFragment : Fragment() {
             loadLiveData(0)
         }
         refreshLayout.setOnLoadmoreListener {
-            loadLiveData(0)
+            refreshLayout.finishRefresh()
         }
         // Set the adapter
         with(iRecyclerView) {
@@ -83,13 +82,15 @@ class HomeLiveListFragment : Fragment() {
     }
 
     private fun loadLiveData(index: Int) {
-        liveDataList.clear()
         DataApi.getLiveRooms().enqueue(object : Callback<List<LiveRoom>> {
             override fun onFailure(call: Call<List<LiveRoom>>, t: Throwable) {
+                refreshLayout.finishRefresh(false)
                 Toast.makeText(context, "更新直播列表失败，请稍后重试！", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<LiveRoom>>, response: Response<List<LiveRoom>>) {
+                refreshLayout.finishRefresh(true)
+                liveDataList.clear()
                 response.body()?.let {
                     liveDataList.addAll(it)
                 }

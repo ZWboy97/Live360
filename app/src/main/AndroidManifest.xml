@@ -10,18 +10,14 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 往sdcard中写入数据的权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 在sdcard中创建/删除文件的权限 -->
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <application
@@ -32,41 +28,54 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LiveDetailActivity"></activity>
-        <!-- 全面屏适配 -->
+        <activity android:name=".activity.APPInfoActivity"></activity>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".activity.LiveDetailActivity"
+            android:launchMode="singleTask" /> <!-- 全面屏适配 -->
         <meta-data
             android:name="android.max_aspect"
             android:value="2.1" />
 
-        <activity android:name=".activity.SplashActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.NetMediaActivty" />
         <activity
             android:name=".activity.VideoPlayerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity android:name=".activity.SettingActivity" />
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask" />
         <activity
             android:name=".activity.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.HistoryActivity" />
         <activity
             android:name=".activity.TestVideoActivity"
             android:configChanges="screenSize|orientation"
-            android:screenOrientation="landscape" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.HomeActivity"
-            android:windowSoftInputMode="adjustNothing"></activity>
-        <activity android:name=".live.VRLiveActivity"></activity>
-        <activity android:name=".activity.LivePublishActivity"/>
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".live.VRLiveActivity" />
+        <activity
+            android:name=".activity.LivePublishActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

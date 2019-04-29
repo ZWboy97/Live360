@@ -40,6 +40,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * 普通视频播放
+ */
 public class VideoPlayerActivity extends Activity implements View.OnClickListener{
 
     private static final String TAG = "TextureVideoActivity";

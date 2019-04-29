@@ -56,5 +56,7 @@
     <color name="bt_enable_false">#949494</color>
     <color name="bt_enable_true">#4CAF50</color>
     <color name="bt_clicked">#3E8B42</color>
+    <color name="video_message_bg">#80434543</color>
+    <color name="video_tips_button_bg">#A42B2B2B</color>
 
 </resources>

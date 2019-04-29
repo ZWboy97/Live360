@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.jackchance.live360.R
 import com.jackchance.live360.data.LiveRoom
+import com.jackchance.live360.util.TimeUtil
 import com.jackchance.live360.util.loadUrl
 import com.jackchance.live360.util.visible
 import com.jackchance.live360.videolist.fragement.HomeLiveListFragment.OnListFragmentInteractionListener
@@ -44,12 +45,7 @@ class MyVideoRecyclerViewAdapter(
         holder.publishMessage.text = item.roomDesc
         holder.liveImage.loadUrl(item.roomCoverImageUrl)
 //        holder.publisherName.text = "null"
-//        //holder.publishTime.text =
-//        if(item.publisherMessage.isNullOrEmpty()){
-//            holder.publishMessage.visible = false
-//        }else{
-//            holder.publishMessage.text = item.publisherMessage
-//        }
+        holder.publishTime.text = TimeUtil.prettyTime(item.createTime)
 //        item.publisher?.avtarUrl?.let {
 //            holder.publisherAvtar.loadUrl(it)
 //        }

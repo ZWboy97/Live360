@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.jackchance.live360.R
-import com.jackchance.live360.activity.LocalFragment
-import com.jackchance.live360.videolist.fragement.HomeLiveListFragment
 import com.jackchance.live360.vod.adapter.MyViewPagerAdapter
 import com.jackchance.live360.vod.fragement.VodVideoListFragment
 
@@ -24,7 +22,7 @@ class VodListFragment : Fragment(), TabLayout.OnTabSelectedListener {
     private var param2: String? = null
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
-    private val titles = arrayOf("户外", "影视", "动画", "生活", "创意")
+    private val titles = arrayOf("直播回放", "户外", "影视", "生活", "宣传")
     private val fragments = arrayListOf(
             VodVideoListFragment.newInstance(2),
             VodVideoListFragment.newInstance(2),

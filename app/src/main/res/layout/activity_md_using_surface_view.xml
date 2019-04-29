@@ -1,87 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-   <FrameLayout
-       android:orientation="horizontal"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
-      <android.opengl.GLSurfaceView
-          android:id="@+id/gl_view"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent" />
-   </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal">
-      <android.support.v7.widget.AppCompatSpinner
-          android:layout_marginLeft="0dp"
-          android:paddingLeft="0dp"
-          android:paddingRight="0dp"
-          android:id="@+id/spinner_interactive"
-          android:layout_width="100dp"
-          android:minWidth="100dp"
-          android:layout_height="wrap_content"/>
+        <android.opengl.GLSurfaceView
+            android:id="@+id/gl_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-      <android.support.v7.widget.AppCompatSpinner
-          android:layout_marginLeft="8dp"
-          android:paddingLeft="0dp"
-          android:paddingRight="0dp"
-          android:id="@+id/spinner_display"
-          android:layout_width="100dp"
-          android:minWidth="100dp"
-          android:layout_height="wrap_content"/>
+    </FrameLayout>
 
-      <android.support.v7.widget.AppCompatSpinner
-          android:layout_marginLeft="8dp"
-          android:paddingLeft="0dp"
-          android:paddingRight="0dp"
-          android:id="@+id/spinner_projection"
-          android:layout_width="100dp"
-          android:minWidth="100dp"
-          android:layout_height="wrap_content"/>
-   </LinearLayout>
+    <LinearLayout
+        android:id="@+id/control_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-   <ProgressBar
-       android:layout_centerInParent="true"
-       android:id="@+id/progress"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content" />
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_interactive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:minWidth="100dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" />
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true">
-      <ImageView
-          android:id="@+id/vr_start"
-          android:layout_width="50dp"
-          android:layout_height="50dp"
-          android:background="@drawable/qyvideo_start_btn"/>
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_display"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:minWidth="100dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" />
 
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_projection"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:minWidth="100dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_orientation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:minWidth="100dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" />
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinner_quality"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:minWidth="100dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:id="@+id/vr_start"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/qyvideo_start_btn" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-         <TextView
-             android:id="@+id/vrplayer_time"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/time0"
-             android:layout_alignParentLeft="true"/>
+            <TextView
+                android:id="@+id/vrplayer_time"
+                android:textColor="@color/colorblack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/time0" />
 
-         <SeekBar
-             android:id="@+id/vrplayer_seekbar"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:layout_below="@+id/vrplayer_time"
-             android:focusable="true"/>
+            <SeekBar
+                android:id="@+id/vrplayer_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vrplayer_time"
+                android:focusable="true" />
 
-      </RelativeLayout>
+        </RelativeLayout>
 
+    </LinearLayout>
 
-   </LinearLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/waiting_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/cover_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:maxHeight="250dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/video_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="这是我的第一个直播"
+            android:textColor="@color/bg_white"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@id/cover_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="正在进入直播"
+            android:textColor="@color/bg_white"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cover_image" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/video_message_bg" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/tip_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/video_message_bg" />
+
+        <TextView
+            android:id="@+id/label_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="切换横屏以获得最佳全景体验"
+            android:textColor="@color/bg_white"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/positive_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_tips_button_bg"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/bg_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/cancel_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/cancel_button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="180dp"
+            android:background="@drawable/shape_tips_button_bg"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/bg_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
 </RelativeLayout>

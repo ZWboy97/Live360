@@ -10,8 +10,10 @@ import android.view.View
 import android.widget.CheckedTextView
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.jackchance.live360.R
 import com.jackchance.live360.data.LiveRoom
+import com.jackchance.live360.fragment.HomeMiscFragment
 import com.jackchance.live360.util.toLiveActivity
 import com.jackchance.live360.util.viewById
 import com.jackchance.live360.util.visible
@@ -20,6 +22,8 @@ import com.jackchance.live360.videolist.fragement.HomeLiveListFragment
 import com.jackchance.live360.vod.VodListFragment
 
 class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.OnListFragmentInteractionListener {
+
+    private var firstTime: Long = 0L  //第一次按返回键的时间
 
     private val homeLiveListButton: CheckedTextView by viewById(R.id.home_live_list_button)
     private val homeVodListButton: CheckedTextView by viewById(R.id.home_kind_button)
@@ -36,7 +40,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
     private var currentSelected: Int = -1
     private val homeLiveListFragment = HomeLiveListFragment.newInstance(1)
     private val homeVodListFragment = VodListFragment.newInstance("", "")
-    private val homeMiscFragment = HomeLiveListFragment.newInstance(1)
+    private val homeMiscFragment = HomeMiscFragment.newInstance("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,16 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
         homeMiscButtonLayout.setOnClickListener(this)
 
         setSelectedFragment(HOME_LIVE)
+    }
+
+    override fun onBackPressed() {
+        var secondTime = System.currentTimeMillis()
+        if (secondTime - firstTime > 2000) {
+            Toast.makeText(applicationContext, "再按一次退出应用", Toast.LENGTH_SHORT).show()
+            firstTime = secondTime
+        } else {
+            moveTaskToBack(true)
+        }
     }
 
     private fun setSelectedFragment(selectIndex: Int) {
@@ -75,7 +89,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
             }
             HOME_MISC -> {
                 homeMiscButton.isChecked = true
-                transaction.replace(R.id.live_list_fragment, homeMiscFragment)
+                transaction.replace(R.id.my_misc_fragment, homeMiscFragment)
                 transaction.commit()
             }
         }
@@ -115,7 +129,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener, HomeLiveListFragment.
                 homeVodFrameLayout.visible = true
             }
             HOME_MISC -> {
-                homeLiveFrameLayout.visible = true
+                homeMiscFrameLayout.visible = true
             }
             else -> {
                 homeLiveFrameLayout.visible = true

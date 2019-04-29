@@ -137,7 +137,7 @@
                 android:layout_marginLeft="70dp"
                 android:layout_marginTop="20dp"
                 android:text="03-06 00:00"
-                android:textColor="@color/pd_blue"
+                android:textColor="#5F80E3"
                 android:textSize="18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time_lable" />
@@ -160,7 +160,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="80dp"
                 android:text="03-06 00:00"
-                android:textColor="@color/pd_blue"
+                android:textColor="#5F80E3"
                 android:textSize="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time_lable" />

@@ -44,7 +44,7 @@ class LivePublishActivity : FragmentActivity() {
     private var ossTask: OSSAsyncTask<PutObjectResult>? = null
     private var startTime: Long = 0
     private var endTime: Long = 0
-    private var isVRModel: Boolean = false
+    private var isVRModel: Boolean = true
     private var isPostLiveSuccess: Boolean = false
     private var isUploadImageSuccess: Boolean = false
     private var coverImageKey: String? = null
@@ -86,6 +86,7 @@ class LivePublishActivity : FragmentActivity() {
                 isVRModel = false
             }
         }
+        liveModelSwitch.isChecked = true
         liveStartTime.setOnClickListener {
             val startTimePickerDialog = TimePickerDialog.Builder()
                     .setType(Type.MONTH_DAY_HOUR_MIN)

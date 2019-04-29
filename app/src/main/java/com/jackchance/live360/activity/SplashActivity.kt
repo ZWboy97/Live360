@@ -23,6 +23,10 @@ class SplashActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!isTaskRoot) {
+            finish()
+            return
+        }
         setContentView(R.layout.activity_splash)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         handler.sendEmptyMessageDelayed(MSG_TO_MAINACTIVITY, WAIT_DELAY)
@@ -51,7 +55,7 @@ class SplashActivity : BaseActivity() {
     companion object {
         const val MSG_TO_MAINACTIVITY = 0
 
-        const val WAIT_DELAY: Long = 1500L
+        const val WAIT_DELAY: Long = 2500L
     }
 
 }

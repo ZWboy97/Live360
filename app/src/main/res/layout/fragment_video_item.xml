@@ -15,7 +15,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/icon_home_live_selected"
+            android:src="@drawable/icon_avtar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/publisher_message"/>

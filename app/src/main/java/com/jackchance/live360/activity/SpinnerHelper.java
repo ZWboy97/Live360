@@ -39,9 +39,9 @@ public class SpinnerHelper {
         return this;
     }
 
-    public void init(int id){
+    public Spinner init(int id){
         if (data == null){
-            return;
+            return null;
         }
 
         Spinner spinner = (Spinner) activity.findViewById(id);
@@ -71,6 +71,7 @@ public class SpinnerHelper {
 
             }
         });
+        return spinner;
     }
 
     public static SpinnerHelper with(Activity activity){
