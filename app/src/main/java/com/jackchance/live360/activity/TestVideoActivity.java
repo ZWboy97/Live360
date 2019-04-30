@@ -191,7 +191,7 @@ public class TestVideoActivity extends Activity {
                     setControlVisible(true);
                     mHandler.removeMessages(DISMISS_CONTROL);
                     mHandler.sendEmptyMessageDelayed(DISMISS_CONTROL, 3000);
-                    mHandler.sendEmptyMessageDelayed(DISPLAY_TIP, 10000);
+                    mHandler.sendEmptyMessageDelayed(DISPLAY_TIP, 3000);
                     break;
                 case DISMISS_CONTROL:
                     setControlVisible(false);
