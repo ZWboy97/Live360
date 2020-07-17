@@ -22,12 +22,7 @@ Live360系统以功能一体化的全景相机（Insta360）作为前端采集�
 - Live360所采用的全景相机，可以连接智能手机，进行直播推流。
 - Insta360地址：[Insta360 One 官网](https://www.insta360.com/product/insta360-one/)
 ![Insta360全景相机图](./imgs/insta360.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">Inta360 One 全景相机</div>
-</center>
+
 </br>
 
 1)	全景图片：分辨率6912*3456，输出格式INSP、JPG、RAW。
@@ -37,32 +32,18 @@ Live360系统以功能一体化的全景相机（Insta360）作为前端采集�
 
 - 再放两个图，关于全景原理以及全景渲染流程的
 ![全景原理](./imgs/panoramic_principle.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">全景原理</div>
-</center>
+</br>
 
 ![全景处理流程](./imgs/panoramic_process.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">全景渲染流程</div>
-</center>
+</br>
 
 ### Live360系统架构
 完整的系统架构图
 
 ![系统架构图](./imgs/system_arch.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">Live360系统架构图</div>
-</center>
+
 </br>
+
 对于全景视频采集部分，使用目前市面上已有的消费级功能一体化全景相机作为前端采集设备（Insta360），通过连接智能手机完成全景采集、拼接、投影、编码以及推流等一系列流程。智能手机通过RTMP流媒体协议将全景画面推流到流媒体服务器，全景播放端通过RTMP或者HLS协议拉流并进行全景渲染。
 
 为了支持全景直播的多码率切换以及直播回放功能，在流媒体服务器上需要部署流转码与流录制服务。流转码服务将直播流转码成更低码率和分辨率的一路新的直播流，与原始流一同可以被用户端拉流播放。流录制功能实现将直播流录制成视频文件以实现直播的回放点播功能，由于视频的点播服务同样需要占用大量的网络带宽，为了减轻流媒体服务器的网络压力，目标系统使用阿里云等公有云提供的OSS服务存储直播录制的视频文件。
@@ -77,12 +58,7 @@ Live360系统以功能一体化的全景相机（Insta360）作为前端采集�
 流媒体部分使用到了SRS提供的流录制、流转码、HLS切片、HTTP-API、回调接口等能力。录制到阿里云OSS的部分，通过OSS的SDK实现。
 
 ![服务器端架构](./imgs/server_arch.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">服务器端的设计</div>
-</center>
+
 </br>
 
 对直播时延进行了测试，能做到两秒的延时。
@@ -95,12 +71,7 @@ Live360系统以功能一体化的全景相机（Insta360）作为前端采集�
 
 安卓端是花费时间比较多的部分，自己也进行了比较充分的架构设计，也用上了Retroift、Kotlin等新东西。
 ![安卓端架构](./imgs/android_arch.png)
-<center>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
-    display: inline-block;
-    color: #999;
-    padding: 0px;">安卓端的设计</div>
-</center>
+
 
 ### Live360管理端
 管理端主要基于SRS流媒体服务器提供的Http-API接口作为后端数据来源，提供了流监控、流预览、流踢出等功能。前端部分采用React框架进行开发，界面采用了蚂蚁金服的[Ant Design](https://ant.design/index-cn)。
